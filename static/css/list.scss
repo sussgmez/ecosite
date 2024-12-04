@@ -1,0 +1,149 @@
+$CARD_SIZE: 320px;
+
+.list-page {
+    margin: auto;
+    max-width: $lg;
+    padding: 1.5rem 1rem;
+    
+
+    .header-list-page {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+        max-width: $lg;
+        
+        h1 {
+            font-size: 1.25rem;
+            text-wrap: nowrap;
+        }
+        .vr {
+            height: 2rem;
+        }
+        // SEARCH
+        .form-search {
+            display: flex;
+            gap: 0.25rem;
+            width: 100%;
+            .inp-text { 
+                flex: 2;
+                border: 1px solid rgba($black, $alpha: 0.3);
+                border-radius: 0.25rem;
+                height: 32px;
+                padding: 0 0.5rem;
+                font-size: 13px;
+                font-weight: 500;
+            }
+            .select {
+                flex: 1;
+                border: 1px solid rgba($black, $alpha: 0.3);
+                border-radius: 0.25rem;
+                height: 32px;
+                padding: 0 0.5rem;
+                font-size: 13px;
+                font-weight: 500;
+                appearance: none;
+                background-color: rgba($black, $alpha: 0.02);
+            }
+            .btn {
+                background-color: $green-1;
+                border: 1px solid rgba($black, $alpha: 0.3);
+                color: $white;
+                flex: 1;
+                padding: 0 2rem;
+                &:hover {
+                    background-color: rgba($green-1, $alpha: 0.8);    
+                }
+            }
+        }
+    }
+
+    .card-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    
+        gap: 1rem;
+
+        .card {
+            border: 1px solid rgba($black, $alpha: 0.2);
+            border-radius: 0.25rem;
+            box-shadow: 0 2px 2px rgba($black, $alpha: 0.1);
+            display: grid;
+            grid-template-rows: 220px 1fr;
+            transition: all 0.3s;
+            overflow: hidden;
+
+            .card-image {
+                border-bottom: 1px solid rgba($black, $alpha: 0.2);
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .card-content {
+                padding: 0.5rem 1rem;
+                overflow: hidden;
+                .card-name {
+                    font-size: 15px;
+                    font-weight: 700;
+                    margin-bottom: 0.5rem;
+                    height: 2.2rem;
+                    overflow: hidden;
+                }
+                .card-address {
+                    font-size: 13px;
+                    font-weight: 500;
+                    text-overflow: ellipsis;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    margin-bottom: 0.25rem;
+                }
+                .card-date {
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: rgba($black, $alpha: 0.6);
+                }
+            }
+            &:hover {
+                box-shadow: 0 3px 3px rgba($black, $alpha: 0.3);
+                border: 1px solid rgba($black, $alpha: 0.5);
+            }
+        }
+    }
+
+    .not-found {
+        background-color: rgba($black, $alpha: 0.05);
+        grid-column: 1 / -1;
+        padding: 2rem;
+        font-weight: 600;
+        color: rgba($black, $alpha: 0.8);
+        border-radius: 0.25rem;
+        height: fit-content;
+    }
+
+    @media (max-width: $lg) {
+        max-width: $md;
+        .header-list-page {
+            flex-direction: column;
+            .vr {
+                display: none;
+            }
+            .form-search {
+                flex-wrap: wrap;
+            }
+        }
+        .card-list {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: $md) {
+        max-width: 400px;
+        .card-list {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+}

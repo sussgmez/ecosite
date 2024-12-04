@@ -1,0 +1,60 @@
+{% extends "base/core.html" %}
+
+{% block content %}
+    <div class="list-page">
+        <!-- Header List Page -->
+        <div class="header-list-page">
+            {% if request.path == '/parques_nacionales/' %}
+            <h1>Parques Nacionales</h1>
+            {% else %}
+            <h1>Monumentos Naturales</h1>
+            {% endif %}
+            <div class="vr"></div>
+            <!-- Search -->
+            {% if request.path == '/parques_nacionales/' %}
+            <form class="form-search" method="get" action="{% url 'np-list' %}">
+            {% else %}
+            <form class="form-search" method="get" action="{% url 'nm-list' %}">
+            {% endif %}
+                <input type="text" class="inp-text" name="text_search" placeholder="Buscar..." value="{{request.GET.text_search }}">
+
+                <select class="select" name="state_search">
+                    <option value="null">--------</option>
+                    {% for state in states %}
+                        <option value="{{ state.0 }}" 
+                        {% if request.GET.state_search == state.0|safe %}
+                            selected
+                        {% endif %}>{{ state.1 }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" class="btn" value="Aplicar filtros">
+            </form>
+        </div>
+
+        <!-- List -->
+        <div class="card-list">
+            {% for obj in object_list %}
+                <!-- Card -->
+                {% if request.path == '/parques_nacionales/' %}
+                <a href="{% url "np-detail" obj.pk  %}" class="card">
+                {% else %}
+                <a href="{% url "nm-detail" obj.pk  %}" class="card">
+                {% endif %}
+                    <div class="card-image">
+                        <img src="{{ obj.image.url }}" alt="">
+                    </div>
+                    <div class="card-content">
+                        <p class="card-name">{{ obj.name }}</p>
+                        <p class="card-address">{{ obj.get_state_display }}</p>
+                        <p class="card-date">{% if obj.established %}{{ obj.established }}{% else %}---- ----{% endif %}</p>
+                    </div>
+                </a >
+            {% empty %}
+                <div class="not-found">
+                    <p>Sin resultados.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

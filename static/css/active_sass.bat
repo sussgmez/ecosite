@@ -1,0 +1,1 @@
+sass -w style.scss style.css

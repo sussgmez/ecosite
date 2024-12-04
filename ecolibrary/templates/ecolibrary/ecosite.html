@@ -1,0 +1,33 @@
+{% extends "base/core.html" %}
+
+{% block content %}
+    <!-- Site -->
+    <div class="site-page">
+        <!-- Header Site -->
+        <div class="header-site-image">
+            <img src="{{ object.image.url }}" alt="">
+        </div>
+        <!-- Content Site -->
+        <div class="site">
+            <h1 class="site-name">{{ object.name }}</h1>
+            <p class="site-data">
+                {% if object.get_cname == 'national_park' %}
+                    <a href="{% url "np-list" %}">Parque nacional</a>
+                    -
+                    <a href="{% url "np-list" %}?state_search={{ object.state }}">Edo. Nueva Esparta</a>
+                {% else %}
+                    <a href="{% url "nm-list" %}">Monumento Natural</a>
+                    -
+                    <a href="{% url "nm-list" %}?state_search={{ object.state }}">Edo. Nueva Esparta</a>
+                {% endif %}
+                {% if object.established %}
+                -
+                    {{ object.established }}
+                {% endif %}
+            </p>
+            <div class="content">
+                {{ object.content|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

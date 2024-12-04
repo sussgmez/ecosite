@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>EcoSite</title>
+</head>
+<body>
+    <!-- Header -->
+    <header id="id_header">
+        <!-- Logo -->
+        <a href="{% url "home" %}" id="id_logo">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </a>
+        <!-- Navbar -->
+        <nav id="id_navbar">
+            <a href="{% url "home" %}" class="nav-link {% if request.path == '/' %}nav-link-selected{% endif %}">Inicio</a>
+            <a href="{% url "np-list" %}" class="nav-link {% if  '/parques_nacionales/' in request.path %}nav-link-selected{% endif %}">Parques Nacionales</a>
+            <a href="{% url "nm-list" %}" class="nav-link {% if '/monumentos_naturales/' in request.path  %}nav-link-selected{% endif %}">Monumentos Naturales</a>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="id_content">
+        
+        {% block content %}{% endblock content %}
+
+    </div>
+    <!-- Footer -->
+     <footer id="id_footer">
+        <p>© Todos los derechos reservados</p>
+     </footer>
+</body>
+</html>

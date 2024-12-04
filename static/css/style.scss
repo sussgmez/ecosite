@@ -1,0 +1,54 @@
+$black: #000;
+$green-1: #7B9E58;
+$white: #FFF;
+
+$lg: 1024px;
+$md: 768px;
+$sm: 600px;
+
+
+@import 'header.scss';
+@import 'list.scss';
+@import 'site.scss';
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: $black;
+}
+
+.btn {
+    cursor: pointer;
+    border: 1px solid rgba($black, 0.1);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    height: 32px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.vr {
+    width: 1px;
+    border-left: 2px solid $black;
+}
+
+#id_content {
+    min-height: 800px;
+}
+
+
+#id_footer {
+    background-color: $black;
+    color: $white;
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+}
